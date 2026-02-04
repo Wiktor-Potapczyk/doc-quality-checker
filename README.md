@@ -3,7 +3,7 @@
 A Python-based CLI tool designed to audit HTML documentation files for structural integrity, content verification, and metadata quality.
 
 ## Documentation
-See [User Guide](doc_checker_user_guide.md) for detailed usage instructions.
+See [User Guide](doc_checker_user_guide.md) for detailed usage instructions (including **Docker** setup).
 
 ## Features
 

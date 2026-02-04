@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  checker:
+    build: .
+    image: doc-quality-checker
+    volumes:
+      - .:/app
+    # Keep container alive if needed, or just let it be a runner
+    # We don't set a command because the Dockerfile has an ENTRYPOINT

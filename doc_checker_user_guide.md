@@ -3,33 +3,43 @@
 ## 1. Introduction
 The **Doc Quality Checker** is a command-line utility designed for DevSecOps and Technical Writing teams. It automates the validation of HTML documentation files to ensure they meet Veeam's strict quality and structural standards.
 
-## 2. Installation
+## 2. Installation & Usage
 
-1.  **Clone the Repository** (or download source files):
+You can run the tool using **Docker** (Recommended) or standard Python.
+
+### Option 1: Run with Docker
+No Python installation required.
+
+1.  **Build the image**:
     ```bash
-    git clone https://github.com/Wiktor-Potapczyk/doc-quality-checker.git
-    cd doc-quality-checker
+    docker compose build
     ```
 
-2.  **Install Required Libraries**:
-    Run the following command in your terminal/command prompt:
+2.  **Run checks**:
+    Use `docker compose run` followed by the service name (`checker`) and your arguments.
+    ```bash
+    # Check specific file(s)
+    docker compose run checker test_files/modified_veeam_test.html
+    ```
+    
+    The report will be generated in your local directory as `report.html`.
+
+### Option 2: Run with Python
+
+1.  **Install Required Libraries**:
     ```bash
     pip install beautifulsoup4
     ```
 
-## 3. Prerequisites
-Before running the tool, ensure your environment meets these requirements:
-*   **Operating System**: Windows, macOS, or Linux.
+2.  **Run the script**:
+    ```bash
+    python doc_checker.py path/to/your/document.html
+    ```
+
+## 3. Prerequisites (Python Method Only)
+If running without Docker:
 *   **Python**: Version 3.8 or higher.
-*   **Dependencies**: `beautifulsoup4` (Python library for parsing HTML).
-
-## 4. Procedure
-
-### Basic Usage
-To check a single HTML file, run the script and provide the file path as an argument:
-```bash
-python doc_checker.py path/to/your/document.html
-```
+*   **Dependencies**: `beautifulsoup4`.
 
 ### Checking Multiple Files
 You can check multiple files in one run. All results will be aggregated into a single report.
