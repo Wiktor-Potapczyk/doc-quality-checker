@@ -41,6 +41,8 @@ If running without Docker:
 *   **Python**: Version 3.8 or higher.
 *   **Dependencies**: `beautifulsoup4`.
 
+## 4. Procedure
+
 ### Checking Multiple Files
 You can check multiple files in one run. All results will be aggregated into a single report.
 ```bash
