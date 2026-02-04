@@ -1,21 +1,49 @@
 # Documentation Quality Checker
 
-A Python tool for auditing HTML documentation files against specific quality and style guidelines.
+A Python-based CLI tool designed to audit HTML documentation files for structural integrity, content verification, and metadata quality.
 
 ## Features
-- **Placeholder Detection**: Finds `TBD` and `<%...%>` patterns.
-- **Structure Logic**: Enforces single `h1` and sequential heading levels.
-- **SEO Checks**: Validates presence of `description` and `keywords` meta tags.
+
+This tool implements **3 specific quality checks** found in common technical writing standards:
+
+1.  **HTML Structure**:
+    *   Verifies that exactly one `<h1>` tag exists.
+    *   Ensures heading levels are sequential (e.g., `<h2>` must follow `<h1>`, not jump to `<h4>`).
+2.  **Build Leftovers**:
+    *   Detects "TBD" (To Be Determined) text.
+    *   Detects raw template placeholders like `<% variable %>`.
+3.  **Post-publish Validation (Meta Tags)**:
+    *   Verifies that the `description` meta tag is present and contains non-empty text.
+
+## Prerequisites
+
+- Python 3.x installed.
+- **Dependencies**: Install the required library using pip:
+  ```bash
+  pip install beautifulsoup4
+  ```
 
 ## Usage
 
+Run the script from the command line, providing the path(s) to the HTML file(s) you want to check.
+
+### Basic Command
 ```bash
-python doc_checker.py <path_to_html_file>
+python doc_checker.py "path/to/your/file.html"
 ```
 
-Example:
+### Checking Multiple Files
 ```bash
-python doc_checker.py mock_help_center.html
+python doc_checker.py file1.html file2.html file3.html
 ```
 
-This will generate a `report.html` file in the current directory with the audit results.
+## Output
+
+The tool generates a single **HTML Report** in the current directory:
+- **File**: `report.html`
+- **Content**: A color-coded summary of passes (Green) and failures (Red/Yellow) for each checked file.
+
+## Troubleshooting
+
+- **"File not found"**: Ensure you provide the correct absolute or relative path to the HTML file.
+- **"ModuleNotFoundError"**: Run `pip install beautifulsoup4`.
