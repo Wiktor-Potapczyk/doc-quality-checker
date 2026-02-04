@@ -77,6 +77,17 @@ def check_html_file(filepath):
             if not meta_keys or not meta_keys.get('content'):
                 issues.append({'type': 'SEO', 'message': "Missing or empty 'keywords' meta tag.", 'severity': 'Warning'})
 
+            # --- Check 4: Image Metadata (Requirement: Check for missing alt attributes) ---
+            images = soup.find_all('img')
+            for img in images:
+                if not img.get('alt'):
+                    img_src = img.get('src', 'unknown')
+                    issues.append({
+                        'type': 'Accessibility', 
+                        'message': f"Image missing 'alt' attribute: src='{img_src}'", 
+                        'severity': 'Error'
+                    })
+
     except Exception as e:
         issues.append({'type': 'Fatal', 'message': f"Could not parse file: {str(e)}", 'severity': 'Critical'})
 
