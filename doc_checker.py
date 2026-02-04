@@ -25,7 +25,11 @@ def check_html_file(filepath):
             for node in text_nodes:
                 # Basic context extract
                 context = node.strip()[:50]
+                # Fallback to parent line if text node has no line info
                 line_val = getattr(node, 'sourceline', None)
+                if not line_val and node.parent:
+                    line_val = getattr(node.parent, 'sourceline', None)
+                
                 line_str = f"[Line {line_val}] " if line_val else ""
                 issues.append({
                     'type': 'Placeholder',
