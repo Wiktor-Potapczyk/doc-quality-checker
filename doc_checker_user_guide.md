@@ -59,6 +59,16 @@ python doc_checker.py test_files/modified_veeam_test.html
 
 The tool generates a file named **`report.html`** in the directory where you ran the script. Open this file in any web browser to view the results.
 
+### Why These Tests?
+
+The tool implements **3 out of 4** available test categories, selected based on the **High-Impact / Low-Effort** principle for automated CI/CD pipelines:
+
+| Test | Rationale |
+|---|---|
+| **HTML Structure** | Proper heading hierarchy is critical for **Accessibility** (screen readers) and **SEO** (search engine ranking). |
+| **Build Leftovers** | "TBD" and template placeholders (`<%...%>`) in production documentation damage brand credibility. These are trivial for scripts to catch but easy for humans to miss. |
+| **Meta Description** | This tag directly controls search result snippets. Missing descriptions reduce **Click-Through Rates (CTR)**. |
+
 ### Types of Issues
 The tool checks for three specific categories of issues:
 
